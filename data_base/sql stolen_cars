@@ -1,0 +1,77 @@
+CREATE TABLE IF NOT EXISTS public.victims_passport
+(
+    pasp_number character varying(15) NOT NULL PRIMARY KEY,
+    date_of_issue date NOT NULL,
+    who_issued character varying(20) NOT NULL,
+    division_code character varying(10) NOT NULL,
+    surname character varying(40) NOT NULL,
+    first_name character varying(40) NOT NULL,
+    dads_name character varying(40),
+    place_of_residence character varying(90) NOT NULL,
+    born_year date NOT NULL,
+    place_of_born character varying(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.pts
+(
+    vin_number character varying(17) NOT NULL PRIMARY KEY,
+    marka character varying(17) NOT NULL,
+    model character varying(17) NOT NULL,
+    car_type character varying(10) NOT NULL,
+    category character varying(1) NOT NULL,
+    year_of_isse integer NOT NULL,
+    engine_number character varying(20) NOT NULL,
+    shassi_number character varying(20) NOT NULL,
+    color character varying(20) NOT NULL,
+    power_horse integer NOT NULL,
+    poewer_kwt integer NOT NULL,
+    engine_size integer NOT NULL,
+    zavod character varying(40) NOT NULL,
+    approval_number character varying(30) NOT NULL,
+    country_of_import character varying(15) NOT NULL,
+    gtd character varying(30) NOT NULL,
+    restrictions character varying(30) NOT NULL,
+    first_owner character varying(20) NOT NULL,
+    adsress_of_first_owner character varying(70) NOT NULL,
+    issued_by character varying(30) NOT NULL,
+    adress_of_issued_by character varying(70) NOT NULL,
+    date_of_isse date NOT NULL,
+    engine_name character varying(10) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS public.stol
+(
+    gos_num character varying(12) NOT NULL PRIMARY KEY,
+    city_of_drivig_away character varying(20) NOT NULL,
+    placr_of_drivig_away character varying(20) NOT NULL,
+    date_of_drivig_away date NOT NULL,
+    status character varying(12) NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS public.victim
+(
+    phone_number character varying(14) NOT NULL,
+    email character varying(60) NOT NULL,
+    passport character varying(15) NOT NULL  REFERENCES victims_passport(pasp_number),
+    residential_address character varying(90) NOT NULL,
+    id_statement bigint NOT NULL PRIMARY KEY,
+    car_gos_num character varying(12) NOT NULL REFERENCES stol(gos_num),
+    vin character varying(17) NOT NULL REFERENCES pts(vin_number)
+);
+
+CREATE TABLE IF NOT EXISTS public.details
+(
+    id_statement bigint NOT NULL REFERENCES victim(id_statement),
+    comments character varying(120),
+    sings_of_car character varying(120),
+    sings_of_intruder character varying(120)
+);
+
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    login character varying(20),
+    password character varying(20),
+    status integer
+)

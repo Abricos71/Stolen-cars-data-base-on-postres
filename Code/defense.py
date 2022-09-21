@@ -1,0 +1,11 @@
+def attack_protection(text):
+    text = text.lower()
+    text = text.replace('or', '')
+    text = text.replace('select', '')
+    text = text.replace('delete', '')
+    text = text.replace('#', '')
+    text = text.replace('=', '')
+    text = text.replace('*', '')
+    text = text.replace('\'', '')
+    text = text.replace('\"', '')
+    return(text)

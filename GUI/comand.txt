@@ -1,0 +1,8 @@
+pyuic5 add.ui -o gui_add.py
+pyuic5 add_users.ui -o gui_AdminWindow.py
+pyuic5 edit.ui -o gui_edit.py
+pyuic5 main_menu.ui -o gui_main_menu.py
+pyuic5 menu.ui -o gui_menu.py
+pyuic5 user_menu.ui -o gui_user_menu.py
+pyuic5 whatch.ui -o gui_whatch.py
+
